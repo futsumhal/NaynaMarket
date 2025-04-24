@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>admin_products</title>
+</head>
+<body>
+<h2>All Products</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Product Name</th>
+      <th>Posted By</th>
+      <th>status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr>
+      <td>{{ product.id }}</td>
+      <td>{{ product.product_name }}</td>
+      <td>{{ product.posted_by }}</td>
+      <td>{{ product.status }}</td>
+      <td>
+        <a href="{{ url_for('approve_product', product_id=product.id) }}" class="btn btn-success btn-sm">Approve</a>
+        <a href="{{ url_for('reject_product', product_id=product.id) }}" class="btn btn-warning btn-sm">Reject</a>
+        <a href="{{ url_for('delete_product', product_id=product.id) }}" onclick="return confirm('Are you sure?')">Delete</a>
+
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</body>
+</html>

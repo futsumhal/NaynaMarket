@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>admin_pannel</title>
+</head>
+<body>
+<h1>Admin Dashboard</h1>
+<p>Welcome, {{ current_user.name }}!</p>
+
+<ul>
+  <li><a href="{{ url_for('admin_users') }}">Manage Users</a></li>
+  <li><a href="{{ url_for('admin_products') }}">Manage Products</a></li>
+  <li><a href="{{ url_for('admin_products') }}">View Statistics</a></li>
+  <li><a href="{{ url_for('admin_subscribers') }}">View Newsletter subscribers</a></li>
+</ul>
+
+
+</body>
+</html>
