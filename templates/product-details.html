@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Portfolio Details - Gp Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="static/assets/img/newlogo.png" rel="icon">
+  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="static/assets/css/main.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- =======================================================
+  * Template Name: Gp
+  * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+  * Updated: Aug 15 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+    <style>
+  .star-rating {
+    font-size: 1.5rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .star {
+    color: #ccc;
+    transition: color 0.2s;
+  }
+  .star.hovered,
+  .star.selected {
+    color: gold;
+  }
+
+  </style>
+</head>
+
+<body class="portfolio-details-page">
+
+  <header id="header" class="header d-flex align-items-center position-relative">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="{{url_for('home_page')}}" class="logo d-flex align-items-center me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="static/assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">QuickMart</h1>
+        <span>.</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{{url_for('home_page')}}">Home<br></a></li>
+          <li><a href="{{url_for('about')}}">About</a></li>
+          <li><a href="{{url_for('services')}}">Services</a></li>
+
+          <li><a href="{{url_for('contact')}}">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+<!--      <a class="btn-getstarted" href="index.html#about">Get Started</a>-->
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>Product  Details</h1>
+<!--              <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- End Page Title -->
+
+    <!-- Portfolio Details Section -->
+    <section id="portfolio-details" class="portfolio-details section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper init-swiper">
+
+              <script type="application/json" class="swiper-config">
+                {
+                  "loop": true,
+                  "speed": 600,
+                  "autoplay": {
+                    "delay": 5000
+                  },
+                  "slidesPerView": "auto",
+                  "pagination": {
+                    "el": ".swiper-pagination",
+                    "type": "bullets",
+                    "clickable": true
+                  }
+                }
+              </script>
+
+              <div class="swiper-wrapper align-items-center">
+                    {% for image in images %}
+                <div class="swiper-slide" style="width: 100%; height: 300px; display: flex; justify-content: center; align-items: center; background-color: #f9f9f9;">
+                  <img src="{{ image.image_url }}" style="max-width: 100%; max-height: 100%; object-fit: contain;" alt="">
+                </div>
+                    {% endfor %}
+
+<!--                <div class="swiper-slide">-->
+<!--                  <img src="static/assets/img/portfolio/product-1.jpg" alt="">-->
+<!--                </div>-->
+
+<!--                <div class="swiper-slide">-->
+<!--                  <img src="static/assets/img/portfolio/branding-1.jpg" alt="">-->
+<!--                </div>-->
+
+<!--                <div class="swiper-slide">-->
+<!--                  <img src="static/assets/img/portfolio/books-1.jpg" alt="">-->
+<!--                </div>-->
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
+              <h3>Product information </h3>
+              <ul>
+                <li><strong>Brand</strong>: {{product.product_name}}</li>
+                <li><strong>Price</strong>: {{product.price}}ETB</li>
+                <li><strong>Post date</strong>: {{ product.post_date.strftime('%Y-%m-%d') }}</li>
+                <li><strong>Sold</strong>: <a href="#">{{product.sold}}</a></li>
+                <li><strong>Price Option</strong>: {{ 'Negotiable' if product.negotiable else 'Fixed Price' }}</li>
+                <li><strong>Phone_number</strong>: {{product.phone_number}}</li>
+                <li><strong>Posted_by</strong>: {{product.posted_by}}</li>
+                <li><i class="fas fa-map-marker-alt"></i> {{ product.location }}</li>
+                <li><p><i class="fas fa-eye"></i> {{ product.views }}<strong>Views</strong></p></li>
+                 {% if current_user.is_authenticated %}
+                  <form action="{{ url_for('rate_product', product_id=product.id) }}" method="POST" class="mt-4">
+                    <div class="mb-3">
+                      <label class="form-label">Rate this product:</label>
+                      <div class="star-rating">
+                        <span class="star" data-value="1">&#9733;</span>
+                        <span class="star" data-value="2">&#9733;</span>
+                        <span class="star" data-value="3">&#9733;</span>
+                        <span class="star" data-value="4">&#9733;</span>
+                        <span class="star" data-value="5">&#9733;</span>
+                      </div>
+                      <input type="hidden" name="rating" id="rating-value" required>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                  </form>
+
+                  {% else %}
+                    <p><a href="{{ url_for('login') }}">Login</a> to rate this product.</p>
+                  {% endif %}
+              </ul>
+            </div>
+            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
+              <h2>Product Description</h2>
+              <p>
+                {{product.description}}
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Details Section -->
+
+  </main>
+
+{% include "footer.html"%}

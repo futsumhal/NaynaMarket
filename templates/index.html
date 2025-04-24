@@ -1,0 +1,251 @@
+{% include "header.html"%}
+
+<!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+       <img id="heroImage" class="img-fluid hero-img" src="{{ hero_images[1] }}" alt="Dynamic Hero Image" data-aos="fade-in">
+
+
+      <div class="container">
+
+        <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-xl-6 col-lg-8">
+            <h2>Welcome To ናይና Market</h2>
+            <p><i>For Quality Products, Unbeatable Prices, and Trusted MarketPlace You Can Count On!</i></p>
+          </div>
+        </div>
+
+        <div class="row gy-4 mt-5 justify-content-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon-box">
+              <i class="bi bi-binoculars"></i>
+              <h3><a href="">Your Trusted Marketplace</a></h3>
+            </div>
+          </div>
+          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="icon-box">
+              <i class="bi bi-bullseye"></i>
+              <h3><a href="">Best Products</a></h3>
+            </div>
+          </div>
+<!--          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="500">-->
+<!--            <div class="icon-box">-->
+<!--              <i class="bi bi-fullscreen-exit"></i>-->
+<!--              <h3><a href="">Fast Delivery to Your Home</a></h3>-->
+<!--            </div>-->
+<!--          </div>-->
+          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="600">
+            <div class="icon-box">
+              <i class="bi bi-card-list"></i>
+              <h3><a href="">Quality at Great Prices</a></h3>
+            </div>
+          </div>
+          <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="700">
+            <div class="icon-box">
+              <i class="bi bi-gem"></i>
+              <h3><a href="">Premium Goods</a></h3>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Hero Section -->
+
+  <!-- Guidance Video Section -->
+<!--  <section class="video-guide text-center my-5" data-aos="fade-up" style="max-width: 700px; margin: 0 auto;">-->
+<!--    <div class="container">-->
+<!--      <h2>How to Use QuickMart</h2>-->
+<!--      <p class="mb-3">Watch this quick guide to learn how to buy and sell on our platform.</p>-->
+<!--      <div class="ratio ratio-16x9">-->
+<!--        <iframe-->
+<!--          src="https://www.youtube.com/embed/c6NWc5N-GpM"-->
+<!--          title="QuickMart Guide Video"-->
+<!--          allowfullscreen>-->
+<!--        </iframe>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+
+
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Products</h2>
+        <p>Check our Products</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-app">Shoes & Footwear</li>
+            <li data-filter=".filter-product">Clothing & Apparel</li>
+            <li data-filter=".filter-branding">Electronics & Gadgets</li>
+            <li data-filter=".filter-other">Other</li>
+          </ul><!-- End Portfolio Filters -->
+
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+            {% for product in data %}
+            {% if product.product_name=="shoe"%}
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+
+              <img src="{{product.image_url}}" alt="">
+              <div class="portfolio-info">
+                <h4>{{product.product_name}}</h4>
+                <p>{{product.price}}ETB</p>
+                {% if product.total_ratings() > 0 %}
+                  <div class="rating">
+                    <p>
+                      Average Rating:
+                      {% for i in range(1, 6) %}
+                        {% if i <= product.average_rating() %}
+                          <span style="color: gold;">&#9733;</span>
+                        {% else %}
+                          <span style="color: #ccc;">&#9733;</span>
+                        {% endif %}
+                      {% endfor %}
+                      ({{ product.average_rating() }}/5 from {{ product.total_ratings() }} users)
+                    </p>
+                  </div>
+                {% else %}
+                  <p>No ratings yet.</p>
+                {% endif %}
+
+                <a href="{{product.image_url}}" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{url_for('product_detail',product_id=product.id)}}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+             {% endif %}
+             {% endfor %}
+
+            {% for product in data %}
+            {% if product.product_name=="cloth"%}
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <img src="{{product.image_url}}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>{{product.product_name}}</h4>
+                <p>{{product.price}}ETB</p>
+                                {% if product.total_ratings() > 0 %}
+                  <div class="rating">
+                    <p>
+                      Average Rating:
+                      {% for i in range(1, 6) %}
+                        {% if i <= product.average_rating() %}
+                          <span style="color: gold;">&#9733;</span>
+                        {% else %}
+                          <span style="color: #ccc;">&#9733;</span>
+                        {% endif %}
+                      {% endfor %}
+                      ({{ product.average_rating() }}/5 from {{ product.total_ratings() }} users)
+                    </p>
+                  </div>
+                {% else %}
+                  <p>No ratings yet.</p>
+                {% endif %}
+                <a href="{{product.image_url}}" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{url_for('product_detail',product_id=product.id)}}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+            {% endif %}
+            {% endfor %}
+
+
+            {% for product in data %}
+            {% if product.product_name=="electronic"%}
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <img src="{{product.image_url}}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>{{product.product_name}}</h4>
+                <p>{{product.price}}ETB</p>
+                                {% if product.total_ratings() > 0 %}
+                  <div class="rating">
+                    <p>
+                      Average Rating:
+                      {% for i in range(1, 6) %}
+                        {% if i <= product.average_rating() %}
+                          <span style="color: gold;">&#9733;</span>
+                        {% else %}
+                          <span style="color: #ccc;">&#9733;</span>
+                        {% endif %}
+                      {% endfor %}
+                      ({{ product.average_rating() }}/5 from {{ product.total_ratings() }} users)
+                    </p>
+                  </div>
+                {% else %}
+                  <p>No ratings yet.</p>
+                {% endif %}
+                <a href="{{product.image_url}}" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{url_for('product_detail',product_id=product.id)}}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+            {% endif %}
+            {% endfor %}
+
+            {% for product in data %}
+            {% if product.product_name=="Other"%}
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-other">
+              <img src="{{product.image_url}}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>{{product.product_name}}</h4>
+                <p>{{product.price}}ETB</p>
+                                {% if product.total_ratings() > 0 %}
+                  <div class="rating">
+                    <p>
+                      Average Rating:
+                      {% for i in range(1, 6) %}
+                        {% if i <= product.average_rating() %}
+                          <span style="color: gold;">&#9733;</span>
+                        {% else %}
+                          <span style="color: #ccc;">&#9733;</span>
+                        {% endif %}
+                      {% endfor %}
+                      ({{ product.average_rating() }}/5 from {{ product.total_ratings() }} users)
+                    </p>
+                  </div>
+                {% else %}
+                  <p>No ratings yet.</p>
+                {% endif %}
+                <a href="{{product.image_url}}" title="Branding 1" data-gallery="portfolio-gallery-other" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{url_for('product_detail',product_id=product.id)}}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+            {% endif %}
+            {% endfor %}
+
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Section -->
+<script>
+  // Get the list of images from Flask
+  const heroImages = {{ hero_images | tojson }};
+  let currentImageIndex = 0;  // Track the current image
+
+  function changeHeroImage() {
+    let newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * heroImages.length);
+    } while (newIndex === currentImageIndex); // Avoid repeating the same image
+    currentImageIndex = newIndex;
+    document.getElementById("heroImage").src = heroImages[currentImageIndex];
+  }
+
+  // Change the image every 5 seconds
+  setInterval(changeHeroImage, 5000);
+</script>
+
+
+
+
+{% include "footer.html"%}

@@ -1,0 +1,151 @@
+{% include "header.html" %}
+<!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <img src="static/assets/img/sell.jpg" alt="" data-aos="fade-in">
+
+      <div class="container">
+
+        <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-xl-6 col-lg-8">
+            <h2>Turn Your Items into Cash!? <span>.</span></h2>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section><!-- /Hero Section -->
+<section id="sell" class="sell section">
+  <div class="container" data-aos="fade-up">
+    <div class="section-header">
+      <h2>Sell Your Product</h2>
+      <p>Fill out the form below to list your product on QuickMart</p>
+    </div>
+    <div class="alert alert-info" role="alert">
+      <strong>Note:</strong> Your product will be reviewed and approved by an admin within 24 hours.
+      If submitted on a holiday, approval may take up to 48 hours. Thank you for your patience!
+    </div>
+
+
+ <form action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data">
+  <div class="row gy-4">
+
+    <!-- Product Category -->
+    <div class="col-md-6">
+      <label for="product_category" class="form-label">Product Category</label>
+      <select name="product_category" class="form-select" id="product_category" required>
+        <option value="">Select a category</option>
+        <option value="shoe">Shoe</option>
+        <option value="cloth">Cloth</option>
+        <option value="electronic">Electronic</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <!-- Product Brand -->
+    <div class="col-md-6">
+      <label for="product_brand" class="form-label">Product Brand</label>
+      <input type="text" name="product_brand" class="form-control" id="product_brand" required>
+    </div>
+
+    <!-- Price -->
+    <div class="col-md-6">
+      <label for="price" class="form-label">Price (Birr)</label>
+      <input type="number" name="price" class="form-control" id="price" required>
+    </div>
+
+    <!-- Price Option (Negotiable or Not) -->
+    <div class="col-md-6">
+      <label for="negotiable" class="form-label">Price Option</label>
+      <select class="form-select" id="negotiable" name="negotiable" required>
+        <option value="" disabled selected>Select a price option</option>
+        <option value="True">Open to negotiation</option>
+        <option value="False">Fixed price</option>
+      </select>
+    </div>
+
+    <!-- Phone Number with 🇪🇹 +251 Prefix -->
+    <div class="col-md-6">
+      <label for="phone_number" class="form-label">Phone Number</label>
+      <div class="input-group">
+        <span class="input-group-text">🇪🇹 +251</span>
+        <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="9XXXXXXXX" required>
+      </div>
+    </div>
+     <div class="col-md-6">
+        <label for="location" class="form-label">Location</label>
+        <input type="text" class="form-control" id="location" name="location" required>
+    </div>
+
+    <!-- Description -->
+    <div class="col-12">
+      <label for="description" class="form-label">Product Description</label>
+      <textarea name="description" class="form-control" id="description" rows="4" placeholder="Describe your item clearly: include size, condition (new/used), color, and any special features." required ></textarea>
+    </div>
+
+    <!-- Cover Image -->
+    <div class="col-12">
+      <label for="image" class="form-label">Upload Cover Image</label>
+      <input type="file" name="image" class="form-control" id="image" accept="image/*" required>
+    </div>
+
+    <!-- Additional Images -->
+    <div class="col-12">
+      <label for="images" class="form-label"><strong>Additional Images</strong></label>
+      <div class="border border-primary rounded p-4 text-center bg-white position-relative" style="cursor: pointer;">
+        <p class="text-muted">📂 Drag images here or click to select</p>
+        <input type="file" name="images[]" id="images" class="form-control border-0 position-absolute" style="opacity:0;left:0;top:0;width:100%;height:100%;cursor:pointer;" multiple >
+      </div>
+      <ul id="file-names" class="mt-2 text-start small text-secondary"></ul>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="col-12 text-center">
+      <button type="submit" class="btn btn-primary px-5">Submit Product</button>
+    </div>
+
+  </div>
+</form>
+
+<script>
+  const fileInput = document.getElementById('images');
+  const fileList = document.getElementById('file-names');
+  const form = document.querySelector('form'); // Your existing form
+  let allFiles = [];
+
+  fileInput.addEventListener('change', function () {
+    const newFiles = Array.from(fileInput.files);
+    newFiles.forEach(file => {
+      if (!allFiles.some(f => f.name === file.name && f.size === file.size)) {
+        allFiles.push(file);
+      }
+    });
+
+    fileList.innerHTML = '';
+    allFiles.forEach(file => {
+      const li = document.createElement('li');
+      li.textContent = file.name;
+      fileList.appendChild(li);
+    });
+
+    fileInput.value = ''; // Reset file input
+  });
+
+  form.addEventListener('submit', function (e) {
+    // Before submitting, attach allFiles manually to a hidden input
+    const dataTransfer = new DataTransfer();
+    allFiles.forEach(file => dataTransfer.items.add(file));
+
+    const realInput = document.getElementById('images');
+    realInput.files = dataTransfer.files;
+
+    // Let the form submit normally after that
+  });
+</script>
+
+
+  </div>
+</section>
+{% include "footer.html" %}
+
