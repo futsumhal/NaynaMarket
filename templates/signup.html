@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Portfolio Details - Gp Bootstrap Template</title>
+  <title>QuickMart</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -37,7 +37,7 @@
     <style>
          .signup-page {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f2f5f9;
+       background: linear-gradient(135deg, #000000, #2c2c2c);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -74,7 +74,7 @@
 
     button {
       padding: 12px;
-      background-color: #007bff;
+      background-color: orange;
       color: white;
       border: none;
       font-size: 16px;
@@ -100,6 +100,46 @@
     .login-link a:hover {
       text-decoration: underline;
     }
+/* Common style for nav buttons */
+.navmenu ul li a.button-link {
+  padding: 8px 16px;
+  border-radius: 6px;
+  margin: 5px;
+  display: inline-block;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s, transform 0.1s;
+}
+
+/* Log in: white background, orange text */
+.navmenu ul li a.login-btn {
+  background-color: #fff;
+  color: orange;
+  border: 2px solid orange;
+}
+
+/* Sign up: orange background, white text */
+.navmenu ul li a.signup-btn {
+  background-color: orange;
+  color: white;
+  border: 2px solid orange;
+}
+
+/* Hover effect */
+.navmenu ul li a.login-btn:hover,
+.navmenu ul li a.login-btn:active {
+  background-color: orange;
+  color: white;
+}
+
+.navmenu ul li a.signup-btn:hover,
+.navmenu ul li a.signup-btn:active {
+  background-color: darkorange;
+  transform: scale(1.05);
+}
+
+
   </style>
   </style>
 </head>
@@ -112,7 +152,7 @@
       <a href="{{url_for('home_page')}}" class="logo d-flex align-items-center me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="static/assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">ናይና Market</h1>
+        <h1 class="sitename">QuickMart</h1>
 
       </a>
 
@@ -124,15 +164,12 @@
 
           <li><a href="{{url_for('contact')}}">Contact</a></li>
           <li><a href="{{url_for('sell_item')}}">Sell</a></li>
+          <li><a href="{{url_for('login')}}" class="button-link login-btn">Log in</a></li>
+          <li><a href="{{url_for('get_started')}}" class="button-link signup-btn">Sign up</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-         <div class="auth-buttons">
-      <a class="btn-getstarted login-btn" href="{{url_for('login')}}">Log in</a>
-
-      <a class="btn-getstarted signup-btn" href="{{url_for('get_started')}}">Sign up</a>
-        </div>
 
     </div>
   </header>
@@ -144,7 +181,7 @@
       <form action="/get_started" method="post">
         <input type="text" name="name" placeholder="Full Name" required />
         <input type="email" name="email" placeholder="Email Address" required />
-        <input type="password" name="password" placeholder="Password" required />
+        <input type="password" name="password" placeholder="Password" required minlength="6" maxlength="18" />
         <button type="submit">Sign Up</button>
       </form>
       <div class="login-link">
@@ -154,7 +191,12 @@
   </section>
 
 
-
+<!-- JS Scripts -->
+<script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="static/assets/vendor/aos/aos.js"></script>
+<script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="static/assets/js/main.js"></script>
 </body>
 </html>
 

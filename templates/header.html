@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>ናይና Market</title>
+  <title>QuickMart</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -28,54 +28,6 @@
   <link href="static/assets/css/main.css" rel="stylesheet">
 
     <style>
-        /* Style login/signup buttons */
-.btn-getstarted {
-  font-size: 14px;
-  padding: 8px 16px;
-  white-space: nowrap; /* Prevent wrapping */
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-
-
-
-@media (max-width: 768px) {
-  .d-flex.justify-content-end.gap-1 {
-    flex-direction: row !important; /* keep them in one line */
-    flex-wrap: wrap; /* only wrap if screen is too tight */
-    justify-content: center;
-    gap: 8px;
-    margin-top: 10px;
-  }
-
-  .btn-getstarted {
-    font-size: 13px;
-    padding: 6px 12px;
-    min-width: auto;
-    white-space: nowrap;
-  }
-}
-@media (max-width: 768px) {
-  .d-flex.justify-content-end.gap-1 {
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    margin-top: 10px;
-    padding: 0 10px;
-  }
-
-  .btn-getstarted {
-    font-size: 12px;
-    padding: 5px 10px;
-    min-width: 80px;
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-}
-
-
 
         .portfolio-item img {
             width: 100%;
@@ -156,6 +108,45 @@
     transform: translateY(0) scale(1);
   }
 }
+        /* Common style for nav buttons */
+.navmenu ul li a.button-link {
+  padding: 8px 16px;
+  border-radius: 6px;
+  margin: 5px;
+  display: inline-block;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s, transform 0.1s;
+}
+
+/* Log in: white background, orange text */
+.navmenu ul li a.login-btn {
+  background-color: #fff;
+  color: orange;
+  border: 2px solid orange;
+}
+
+/* Sign up: orange background, white text */
+.navmenu ul li a.signup-btn {
+  background-color: orange;
+  color: white;
+  border: 2px solid orange;
+}
+
+/* Hover effect */
+.navmenu ul li a.login-btn:hover,
+.navmenu ul li a.login-btn:active {
+  background-color: orange;
+  color: white;
+}
+
+.navmenu ul li a.signup-btn:hover,
+.navmenu ul li a.signup-btn:active {
+  background-color: darkorange;
+  transform: scale(1.05);
+}
+
 
 
 
@@ -169,41 +160,55 @@
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
         <a href="{{ url_for('home_page') }}" class="logo d-flex align-items-center me-auto me-lg-0">
-          <h1 class="sitename">ናይናMarket</h1>
+          <h1 class="sitename">QuickMart</h1>
         </a>
 
+<nav id="navmenu" class="navmenu">
+  <ul>
+    <li><a href="{{url_for('home_page')}}">Home<br></a></li>
+    <li><a href="{{url_for('about')}}">About</a></li>
+    <li><a href="{{url_for('services')}}">Services</a></li>
+    <li><a href="{{url_for('contact')}}">Contact</a></li>
 
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="{{url_for('home_page')}}" >Home<br></a></li>
-          <li><a href="{{url_for('about')}}" >About</a></li>
-          <li><a href="{{url_for('services')}}">Services</a></li>
 
-          <li><a href="{{url_for('contact')}}">Contact</a></li>
-            {% if current_user.is_authenticated %}
-          <li><a href="{{url_for('sell_item')}}">Sell</a></li>
-            {% else %}
-          <li><a href="{{url_for('login')}}">Sell</a></li>
-            {% endif %}
-        </ul>
+    <li><a href="{{url_for('sell_item')}}">Sell</a></li>
+    {% if current_user.is_authenticated %}
+  <li class="dropdown d-none d-xl-block">
+    <a class="nav-link text-white" href="#" role="button" data-bs-toggle="dropdown" style="font-size: 16px;">
+      <i class="bi bi-person-circle fs-3"></i> <!-- Profile Icon -->
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end custom-dropdown">
+      <li><a class="dropdown-item" href="{{ url_for('update_profile') }}">Profile</a></li>
+      <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+    </ul>
+  </li>
 
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-     </nav>
-        {% if current_user.is_authenticated %}-->
-        <div class="dropdown">
-        <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 text-white" href="#" role="button" data-bs-toggle="dropdown" style="font-size: 16px;">
-          <i class="bi bi-person-circle fs-5"></i> {{ current_user.name }}
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end custom-dropdown">
-          <li><a class="dropdown-item" href="{{ url_for('update_profile') }}">Profile</a></li>
-          <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
-        </ul>
-      </div>
-         {% else %}
-        <div class="d-flex justify-content-end gap-1">
-          <a class="btn-getstarted login-btn" href="{{ url_for('login') }}">Log in</a>
-          <a class="btn-getstarted signup-btn" href="{{ url_for('get_started') }}">Sign up</a>
-        </div>
-        {% endif %}
+  <!-- Mobile View: Profile and Logout links in Hamburger -->
+  <li class="d-xl-none">
+  <a class="nav-link" href="{{ url_for('update_profile') }}">Profile</a>
+  </li>
+  <li class="d-xl-none">
+    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+  </li>
+    {% else %}
+    <li class="d-none d-xl-block">
+      <a href="{{url_for('login')}}" class="button-link login-btn">Log in</a>
+    </li>
+    <li class="d-none d-xl-block">
+      <a href="{{url_for('get_started')}}" class="button-link signup-btn">Sign up</a>
+    </li>
+
+    <!-- Hamburger View: Plain Nav Links -->
+    <li class="d-xl-none">
+      <a href="{{url_for('login')}}" class="nav-link">Log in</a>
+    </li>
+    <li class="d-xl-none">
+      <a href="{{url_for('get_started')}}" class="nav-link">Sign up</a>
+    </li>
+    {% endif %}
+  </ul>
+  <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+</nav>
+
     </div>
   </header>

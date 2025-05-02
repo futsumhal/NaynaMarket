@@ -9,9 +9,9 @@
       <div class="container">
 
         <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-xl-6 col-lg-8">
-            <h2>Welcome To ናይና Market</h2>
-            <p><i>For Quality Products, Unbeatable Prices, and Trusted MarketPlace You Can Count On!</i></p>
+          <div class="col-xl-12 col-lg-8">
+            <h2>Welcome To QuickMart.</h2>
+<!--            <p><i>For Quality Products, Unbeatable Prices, and Trusted MarketPlace You Can Count On!</i></p>-->
           </div>
         </div>
 
@@ -84,20 +84,20 @@
 
           <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
             <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">Shoes & Footwear</li>
-            <li data-filter=".filter-product">Clothing & Apparel</li>
-            <li data-filter=".filter-branding">Electronics & Gadgets</li>
+            <li data-filter=".filter-shoe">Shoes & Footwear</li>
+            <li data-filter=".filter-cloth">Clothing & Apparel</li>
+            <li data-filter=".filter-electronic">Electronics & Gadgets</li>
             <li data-filter=".filter-other">Other</li>
           </ul><!-- End Portfolio Filters -->
 
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
             {% for product in data %}
             {% if product.product_name=="shoe"%}
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-shoe">
 
               <img src="{{product.image_url}}" alt="">
               <div class="portfolio-info">
-                <h4>{{product.product_name}}</h4>
+                <h4>{{product.product_brand}}</h4>
                 <p>{{product.price}}ETB</p>
                 {% if product.total_ratings() > 0 %}
                   <div class="rating">
@@ -117,7 +117,7 @@
                   <p>No ratings yet.</p>
                 {% endif %}
 
-                <a href="{{product.image_url}}" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{product.image_url}}" title="shoe" data-gallery="portfolio-gallery-shoe" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="{{url_for('product_detail',product_id=product.id)}}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
@@ -126,7 +126,7 @@
 
             {% for product in data %}
             {% if product.product_name=="cloth"%}
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-cloth">
               <img src="{{product.image_url}}" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>{{product.product_name}}</h4>
@@ -148,7 +148,7 @@
                 {% else %}
                   <p>No ratings yet.</p>
                 {% endif %}
-                <a href="{{product.image_url}}" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{product.image_url}}" title="cloth" data-gallery="portfolio-gallery-cloth" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="{{url_for('product_detail',product_id=product.id)}}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
@@ -158,7 +158,7 @@
 
             {% for product in data %}
             {% if product.product_name=="electronic"%}
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-electronic">
               <img src="{{product.image_url}}" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>{{product.product_name}}</h4>
@@ -180,7 +180,7 @@
                 {% else %}
                   <p>No ratings yet.</p>
                 {% endif %}
-                <a href="{{product.image_url}}" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{product.image_url}}" title="electronic" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="{{url_for('product_detail',product_id=product.id)}}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
@@ -211,7 +211,7 @@
                 {% else %}
                   <p>No ratings yet.</p>
                 {% endif %}
-                <a href="{{product.image_url}}" title="Branding 1" data-gallery="portfolio-gallery-other" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{product.image_url}}" title="other" data-gallery="portfolio-gallery-other" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 <a href="{{url_for('product_detail',product_id=product.id)}}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
